@@ -19,7 +19,7 @@ typedef struct node
 }
 node;
 
-// TODO: Choose number of buckets in hash table
+// Choose number of buckets in hash table
 const unsigned int N = 26;
 
 // Hash table
@@ -30,7 +30,6 @@ int words = 0;
 // Returns true if word is in dictionary, else false
 bool check(const char *word)
 {
-    // TODO
     int value = hash(word);
 
     node *current_node = table[value];
@@ -49,7 +48,6 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    // TODO: Improve this hash function
     long letter_sum = 0;
 
     for (int i = 0; i < strlen(word); i++)
@@ -62,7 +60,6 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
-    // TODO
     FILE *file = fopen(dictionary, "r");
     if (file == NULL)
     {
@@ -105,14 +102,12 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
     return words;
 }
 
 // Unloads dictionary from memory, returning true if successful, else false
 bool unload(void)
 {
-    // TODO
     for (int i = 0; i < N; i++)
     {
         node *current_node = table[i];

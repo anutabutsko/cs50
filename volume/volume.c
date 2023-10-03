@@ -35,12 +35,12 @@ int main(int argc, char *argv[])
 
     float factor = atof(argv[3]);
 
-    // TODO: Copy header from input file to output file
+    // Copy header from input file to output file
     BYTE headerBuffer[HEADER_SIZE];
     fread(headerBuffer, sizeof(BYTE), HEADER_SIZE, input);
     fwrite(headerBuffer, sizeof(BYTE), HEADER_SIZE, output);
 
-    // TODO: Read samples from input file and write updated data to output file
+    // Read samples from input file and write updated data to output file
 
     SAMPLE_AUDIO buffer;
     while (fread(&buffer, sizeof(SAMPLE_AUDIO), 1, input) == 1)
