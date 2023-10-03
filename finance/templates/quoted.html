@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Stock Information
+{% endblock %}
+
+{% block main %}
+<h1>Stock Information</h1>
+<h3>Name: {{ sl.name }}</h3>
+<h3>Price: {{ usd(sl.price) }}</h3>
+<h3>Symbol: {{ sl.symbol }}</h3>
+{% endblock %}

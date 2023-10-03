@@ -1,0 +1,31 @@
+#name {
+    font-family: monospace;
+    font-size: 50px;
+    text-emphasis: underline;
+    color: red;
+    opacity: 0.4;
+}
+
+.about {
+    font-family: Arial;
+}
+
+h1 {
+    color: red;
+}
+
+td:hover {
+    color: blue;
+}
+
+li {
+    font-size: 20px;
+}
+
+h3.about {
+    color: green;
+}
+
+h4.about {
+    color: green;
+}

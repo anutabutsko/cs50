@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Purchases
+{% endblock %}
+
+{% block main %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col">Shares</th>
+        <th scope="col">Price</th>
+        <th scope="col">TOTAL</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for i in database %}
+    <tr>
+        <td>{{ i["symbol"] }}</td>
+        <td>{{ i["shares"] }}</td>
+        <td>{{ usd(i["price"]) }}</td>
+        <td>{{ usd(i["price"] * i["shares"]) }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <th scope="1">Remaining</th>
+        <th scope="1">{{ usd(money) }}</th>
+    </tr>
+    </tfoot>
+</table>
+
+
+{% endblock %}

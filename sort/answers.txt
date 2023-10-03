@@ -1,0 +1,18 @@
+sort1 uses: Bubble Sort
+
+How do you know?: This method is a lot slower than sort2 and very similar in time to sort3. However, if we run sorted50000.txt,
+time elapsed = 0m0.425s, comparing to time ./sort3 sorted50000.txt = 0m3.130s. Which proves that sort1 uses
+Bubble Sort method and gets licky with omega rotation(n).
+
+sort2 uses: Merge Sort
+
+How do you know?: This Method is noticebly faster than the other two with one exceprion of lossing to Bubble Sort with already
+sorted files.
+
+sort3 uses: Selection Sort
+
+How do you know?: This method is slower than sort2  and faster than sort1 when ran through all the files. However, it loses to sort1
+with sorted50000.txt, because, unlike bubble sort, omega rotation of selection sort is equal to big O rotation of selection sort.
+Thus it takes the same amount of time to sort sorted or unsorted list, while bubble sort is noticeably faster
+(explained in sort1 answer)
+time ./sort3 sorted50000.txt = 0m3.130s comparing to time ./sort1 sorted50000.txt = 0m0.425s
