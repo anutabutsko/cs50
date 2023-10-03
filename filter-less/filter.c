@@ -25,47 +25,47 @@ int main(int argc, char *argv[])
     }
 
     // Ensure proper usage
-    if (argc != optind + 2)
+    if (argc != opt_ind + 2)
     {
         printf("Usage: ./filter [flag] infile outfile\n");
         return 3;
     }
 
     // Remember filenames
-    char *infile = argv[optind];
-    char *outfile = argv[optind + 1];
+    char *infile = argv[opt_ind];
+    char *outfile = argv[opt_ind + 1];
 
     // Open input file
-    FILE *inptr = fopen(infile, "r");
-    if (inptr == NULL)
+    FILE *inp_tr = fopen(infile, "r");
+    if (inp_tr == NULL)
     {
         printf("Could not open %s.\n", infile);
         return 4;
     }
 
     // Open output file
-    FILE *outptr = fopen(outfile, "w");
-    if (outptr == NULL)
+    FILE *out_ptr = fopen(outfile, "w");
+    if (out_ptr == NULL)
     {
-        fclose(inptr);
+        fclose(inp_tr);
         printf("Could not create %s.\n", outfile);
         return 5;
     }
 
     // Read infile's BITMAPFILEHEADER
     BITMAPFILEHEADER bf;
-    fread(&bf, sizeof(BITMAPFILEHEADER), 1, inptr);
+    fread(&bf, sizeof(BITMAPFILEHEADER), 1, inp_tr);
 
     // Read infile's BITMAPINFOHEADER
     BITMAPINFOHEADER bi;
-    fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
+    fread(&bi, sizeof(BITMAPINFOHEADER), 1, inp_tr);
 
     // Ensure infile is (likely) a 24-bit uncompressed BMP 4.0
     if (bf.bfType != 0x4d42 || bf.bfOffBits != 54 || bi.biSize != 40 ||
         bi.biBitCount != 24 || bi.biCompression != 0)
     {
-        fclose(outptr);
-        fclose(inptr);
+        fclose(out_ptr);
+        fclose(inp_tr);
         printf("Unsupported file format.\n");
         return 6;
     }
@@ -79,8 +79,8 @@ int main(int argc, char *argv[])
     if (image == NULL)
     {
         printf("Not enough memory to store image.\n");
-        fclose(outptr);
-        fclose(inptr);
+        fclose(out_ptr);
+        fclose(inp_tr);
         return 7;
     }
 
@@ -91,10 +91,10 @@ int main(int argc, char *argv[])
     for (int i = 0; i < height; i++)
     {
         // Read row into pixel array
-        fread(image[i], sizeof(RGBTRIPLE), width, inptr);
+        fread(image[i], sizeof(RGBTRIPLE), width, inp_tr);
 
         // Skip over padding
-        fseek(inptr, padding, SEEK_CUR);
+        fseek(inp_tr, padding, SEEK_CUR);
     }
 
     // Filter image
@@ -122,21 +122,21 @@ int main(int argc, char *argv[])
     }
 
     // Write outfile's BITMAPFILEHEADER
-    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
+    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, out_ptr);
 
     // Write outfile's BITMAPINFOHEADER
-    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
+    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, out_ptr);
 
     // Write new pixels to outfile
     for (int i = 0; i < height; i++)
     {
         // Write row to outfile
-        fwrite(image[i], sizeof(RGBTRIPLE), width, outptr);
+        fwrite(image[i], sizeof(RGBTRIPLE), width, out_ptr);
 
         // Write padding at end of row
         for (int k = 0; k < padding; k++)
         {
-            fputc(0x00, outptr);
+            fputc(0x00, out_ptr);
         }
     }
 
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
     free(image);
 
     // Close files
-    fclose(inptr);
-    fclose(outptr);
+    fclose(inp_tr);
+    fclose(out_ptr);
     return 0;
 }
