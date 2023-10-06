@@ -1,4 +1,3 @@
-
 # CS50: Introduction to Computer Science Projects
 
 This repository contains all of my project submissions for Harvard's CS50: Introduction to Computer Science course. Each project showcases a specific concept or skill I acquired during this course.
