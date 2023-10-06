@@ -10,4 +10,3 @@ While this repository is primarily for my personal learning and review, feedback
 ## Acknowledgments
 
 - Thank you to [Harvard's CS50 course](https://cs50.harvard.edu/x/2023/) team for the comprehensive materials and learning experience.
-- Special shoutout to Professor David J. Malan for his engaging lectures and invaluable insights.
