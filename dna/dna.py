@@ -3,12 +3,12 @@ import sys
 
 
 def main():
-    # TODO: Check for command-line usage
+    # Check for command-line usage
     if len(sys.argv) < 2:
         print('Provide two command-line arguments')
 
     data_dict = {}
-    # TODO: Read database file into a variable
+    # Read database file into a variable
     filename = sys.argv[1]
     with open(filename) as file:
         first_line = file.readline().rstrip().split(',')[1:]
@@ -20,11 +20,11 @@ def main():
             data_dict[file[0]] = user_dict
 
     DNA_file = sys.argv[2]
-    # TODO: Read DNA sequence file into a variable
+    # Read DNA sequence file into a variable
     with open(DNA_file) as filename:
         DNA_sequence = filename.read()
 
-    # TODO: Find longest match of each STR in DNA sequence
+    # Find the longest match of each STR in DNA sequence
     dna_dict = {}
     for dna in first_line:
         largest = longest_match(DNA_sequence, dna)
@@ -55,7 +55,7 @@ def main():
             print('No match')
             return 1
 
-    # TODO: Check database for matching profiles
+    # Check database for matching profiles
     for key, value in data_dict.items():
         flag = True
         for dna in first_line:
@@ -82,7 +82,7 @@ def main():
 
 
 def longest_match(sequence, subsequence):
-    """Returns length of longest run of subsequence in sequence."""
+    """Returns length of the longest run of subsequence in sequence."""
 
     # Initialize variables
     longest_run = 0
@@ -115,7 +115,7 @@ def longest_match(sequence, subsequence):
         # Update most consecutive matches found
         longest_run = max(longest_run, count)
 
-    # After checking for runs at each character in seqeuence, return longest run found
+    # After checking for runs at each character in sequence, return longest run found
     return longest_run
 
 
